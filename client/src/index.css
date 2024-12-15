@@ -18,3 +18,9 @@ code {
   margin: 0;
   box-sizing: border-box;
 }
+.charging {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

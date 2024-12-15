@@ -12,43 +12,49 @@ import {
 export const LoadChart = () => {
   const data = [
     {
-      name: "Page A",
+      name: "21:00",
       uv: 4000,
       pv: 2400,
       amt: 2400,
     },
     {
-      name: "Page B",
+      name: "00:00",
       uv: 3000,
       pv: 1398,
       amt: 2210,
     },
     {
-      name: "Page C",
+      name: "03:00",
       uv: -1000,
       pv: 9800,
       amt: 2290,
     },
     {
-      name: "Page D",
+      name: "06:00",
       uv: 500,
       pv: 3908,
       amt: 2000,
     },
     {
-      name: "Page E",
+      name: "09:00",
       uv: -2000,
       pv: 4800,
       amt: 2181,
     },
     {
-      name: "Page F",
+      name: "12:00",
       uv: -250,
       pv: 3800,
       amt: 2500,
     },
     {
-      name: "Page G",
+      name: "15:00",
+      uv: 3490,
+      pv: 4300,
+      amt: 2100,
+    },
+    {
+      name: "18:00",
       uv: 3490,
       pv: 4300,
       amt: 2100,

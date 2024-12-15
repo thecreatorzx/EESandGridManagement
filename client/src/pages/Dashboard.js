@@ -1,19 +1,28 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setValue, setGridLoad } from "../features/energySlice";
 import EnergyCard from "../components/EnergyCard";
 import LoadChart from "../components/LoadChart";
+import UsageChart from "../components/UsageChart";
 
 const Dashboard = () => {
-  const [value, setValue] = useState(5);
-  const prodCardWidth = 280;
-  const storCardWidth = 180;
+  const dispatch = useDispatch();
+  const { value, gridLoad, storage, isLoadGreaterThanPower } = useSelector(
+    (state) => state.energy
+  );
+  const productCardWidth = 274;
+  const storageCardWidth = 180;
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setValue(Math.floor(Math.random() * 101));
+      const randomValue = Math.floor(Math.random() * 101);
+      dispatch(setValue(randomValue));
     }, 2000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [dispatch]);
+
+  const totalPower = 60 + value / 20 + 50 + value / 5;
 
   return (
     <div className="dashboard">
@@ -23,46 +32,55 @@ const Dashboard = () => {
           <div className="production">
             <EnergyCard
               name={"Solar Power"}
-              value={value}
-              width={prodCardWidth}
+              value={60 + value / 20}
+              width={productCardWidth}
             />
             <EnergyCard
               name={"Wind Power"}
-              value={value}
-              width={prodCardWidth}
+              value={50 + value / 5}
+              width={productCardWidth}
             />
             <EnergyCard
               name={"Total Power"}
-              value={value}
-              width={prodCardWidth}
+              value={totalPower}
+              width={productCardWidth}
+              gridLoad={gridLoad}
+              setGridLoad={(load) => dispatch(setGridLoad(load))}
+              isLoadGreaterThanPower={isLoadGreaterThanPower}
             />
+            <h2>Power Generator</h2>
           </div>
           <section className="load-chart">
             <LoadChart />
+            <h2>Power Flow Analysis</h2>
           </section>
         </section>
         <section>
           <div className="storage">
-            <EnergyCard
-              name={"Super Capacitor"}
-              value={value}
-              width={storCardWidth}
-            />
-            <EnergyCard
-              name={"Thermal Battery"}
-              value={value}
-              width={storCardWidth}
-            />
-            <EnergyCard
-              name={"Pumped Hydro"}
-              value={value}
-              width={storCardWidth}
-            />
-            <EnergyCard
-              name={"Crynogenic Battery"}
-              value={value}
-              width={storCardWidth}
-            />
+            {storage.map((s, index) => (
+              <EnergyCard
+                key={index}
+                name={`Storage ${index + 1}`}
+                value={s}
+                width={storageCardWidth}
+                status={isLoadGreaterThanPower ? "Unutilized" : "Charging"}
+                isLoadGreaterThanPower={isLoadGreaterThanPower}
+              />
+            ))}
+            <div className="charging">
+              <p
+                style={{
+                  color: isLoadGreaterThanPower ? "red" : "green",
+                }}
+              >
+                {isLoadGreaterThanPower ? "Discharging" : "Charging"}
+              </p>
+              <h2>Energy Storage</h2>
+            </div>
+          </div>
+          <div className="life-cycle">
+            <UsageChart />
+            <h2>Storage Performance Overview</h2>
           </div>
         </section>
       </article>

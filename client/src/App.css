@@ -1,18 +1,22 @@
 
 
 /* Dashboard */
-h1{
+.dashboard h1{
   text-align: center;
   width: 100vw;
-  height: 120px;
+  height: 100px;
   font-size: 3rem;
-  padding: 20px;
+  margin-bottom: 20px;
+  color: #333;
+  padding-top: 20px;
+  background: white;
 }
 .dashboard article {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0 50px;
+  color: #333;
+  padding: 0 50px 30px 50px;
 }
 .production, .storage { 
   display: flex;
@@ -22,20 +26,37 @@ h1{
   flex-wrap: wrap;
   width: fit-content;
   height: fit-content;
+  border-radius: 10px;
+  padding: 10px;
+  width: 61vw;
   background: white;
+  margin: 0 10px 10px 0 ;
 } 
 .storage{
-  padding: 15px;
   width: 30vw;
-  margin-left: 10px ;
 }
 .dashboard .energy-card {
   padding: 10px 5px;
   margin: 10px;
+  border: 1px solid #3333;
+  border-radius: 10px;
   background: white;
 }
-h2{
+
+.dashboard h2 {
+  text-align: center;
+  padding-left: 10px;
   font-size: 1.2rem;
+}
+.dashboard h3 {
+  position: absolute;
+  font-size: .9rem;
+  color: indigo;
+  transform: translate(-5px,45px);
+  background: rgb(237, 216, 251);
+  text-transform: capitalize;
+  padding: 2px 5px;
+  border-radius: 5px;
 }
 .recharts-area .recharts-radial-bar-background>.recharts-radial-bar-background-sector:nth-of-type(1){
   fill:transparent;/* removing background for the inner section of chart */
@@ -57,8 +78,26 @@ h2{
 }
 
 .load-chart {
-  width: 60.5vw;
-  height: 400px;
-  margin-top: 10px;
+  width: 61vw;
+  height: 480px;
+  padding: 40px 20px;
+  border-radius: 10px;
   background: white;
+}
+
+.life-cycle{
+  width: 30vw;
+  height: 325px;
+  padding-bottom: 40px;
+  border-radius: 10px;
+  background: white;
+}
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+#slider {
+  width: 80%;
 }
